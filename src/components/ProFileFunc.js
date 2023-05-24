@@ -5,7 +5,8 @@ import Details from "./DetailsFunc";
 
 export default function Profile() {
     const [profiles, setProfiles] = useState({
-        url: 'https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/hooks-context/use-effect/data/users.json',
+        // url: 'https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/hooks-context/use-effect/data/users.json',
+        // urlDetails: 'https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/hooks-context/use-effect/data/',
         profilesList: []
     });
     const [preloader, setPreloader] = useState(false);
@@ -16,7 +17,7 @@ export default function Profile() {
             setProfileDetails(null)
         } else {
             setProfileDetails(null)
-            getProfileDetails(profiles.url, id).then(result => {
+            getProfileDetails(process.env.REACT_APP_PROFILE_URL, id).then(result => {
                 setProfileDetails(result);
             })
         }
@@ -25,10 +26,10 @@ export default function Profile() {
     }
 
     useEffect(() => {
-        getProfilesList(profiles.url).then(result => {
+        getProfilesList(process.env.REACT_APP_USERS_URL).then(result => {
             setProfiles({ profilesList: result});
         })
-    }, [profiles])
+    }, [setProfiles])
 
     useEffect(() => {
         setPreloader(false);
