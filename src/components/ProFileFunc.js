@@ -28,17 +28,16 @@ export default function Profile() {
         getProfilesList(profiles.url).then(result => {
             setProfiles({ profilesList: result});
         })
-    }, [])
+    }, [profiles])
 
     useEffect(() => {
-        console.log(profileDetails)
         setPreloader(false);
     }, [profileDetails])
 
     return (
         <div className="main-content">
             <List handle={handleClickItemList} profilesList={profiles.profilesList}/>
-            {profileDetails ? <Details {...profileDetails}/> : null}
+            {profileDetails ? <Details {...profileDetails}/> : preloader && null}
         </div>
     )
 }

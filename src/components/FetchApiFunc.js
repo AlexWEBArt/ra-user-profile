@@ -47,7 +47,6 @@ export async function getProfileDetails(url, id) {
 
     //     return
     // }
-    console.log(id)
     switch (id) {
         case 1:
             return user1
